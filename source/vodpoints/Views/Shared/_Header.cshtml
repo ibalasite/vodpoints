@@ -1,0 +1,193 @@
+﻿<!-- BEGIN HEADER -->
+<!-- BEGIN HEADER -->
+<div class="page-header">
+    <!-- BEGIN HEADER TOP -->
+    <div class="page-header-top">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="index.html"><img src="~/images/logo.png" alt="logo" class="logo-default"></a>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler"></a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN PAGE TOP -->
+            <div class="page-top">
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN INBOX DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-extended dropdown-dark dropdown-inbox" id="header_inbox_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span class="circle">3</span>
+                            </a>
+                        </li>
+                        <!-- END INBOX DROPDOWN -->
+
+                        <li class="separator hide">
+                        </li>
+
+                        <li class="droddown dropdown-separator">
+                            <span class="separator"></span>
+                        </li>
+
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user dropdown-dark">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span class="username username-hide-on-mobile">
+                                    Alex
+                                </span>
+                                <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                                <img alt="" class="img-circle" src="~/images/Alex.png" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="manager_edit.html">
+                                        <i class="icon-user"></i> 我的帳戶
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="login.html">
+                                        <i class="icon-key"></i> 系統登出
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+        </div>
+    </div>
+    <!-- END HEADER TOP -->
+    <!-- BEGIN HEADER MENU -->
+    <div class="page-header-menu">
+        <div class="container-fluid">
+            <!-- BEGIN HEADER SEARCH BOX -->
+            <form class="search-form" action="extra_search.html" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="搜尋" name="query">
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+                    </span>
+                </div>
+            </form>
+
+            <!-- BEGIN MEGA MENU -->
+            <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+            <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+            <div class="hor-menu ">
+                <ul class="nav navbar-nav">
+                    <li class="menu-dropdown classic-menu-dropdown ">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            <i class="fa fa-film"></i> 片庫管理 <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li>
+                                <a href="@Url.Action("Index", "Home")">片庫瀏覽</a>
+                            </li>
+                            <li>
+                                <a href="video_tags.html">
+                                    影片標籤
+                                </a>
+                            </li>
+                            <li class="divider">
+                            </li>
+                            <li>
+                                <a href="upload.html">
+                                    上傳影片
+                                </a>
+                            </li>
+                            <li>
+                                <a href="excel_import.html">
+                                    Excel片單匯入
+                                </a>
+                            </li>
+                            <li>
+                                <a href="video_check.html">
+                                    影片上架
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown ">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            <i class="fa fa-delicious"></i> 套餐管理 <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li>
+                                <a href="@Url.Action("Index", "Package")">套餐管理</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Management", "Package")">套餐組成管理</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-dropdown classic-menu-dropdown">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            <i class="fa fa-gear"></i> 系統設定 <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li>
+                                <a href="video_program.html">
+                                    節目分類設定
+                                </a>
+                            </li>
+                            <li>
+                                <a href="supplier.html">
+                                    頻道商管理
+                                </a>
+                            </li>
+                            <li>
+                                <a href="edge_server_list.html">
+                                    分發伺服器清單
+                                </a>
+                            </li>
+                            <li class="divider">
+                            </li>
+                            <li>
+                                <a href="videos_setting.html">
+                                    轉檔參數設定
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "OperationLog")">
+                            <i class="icon-user"></i> 操作紀錄
+                        </a>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown ">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            <i class="icon-user"></i> 權限控管 <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li>
+                                <a href="@Url.Action("Manager", "Authorization")">
+                                    管理員清單
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Authority", "Authorization")">
+                                    權限控管
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- END MEGA MENU -->
+        </div>
+    </div>
+    <!-- END HEADER MENU -->
+</div>
+<!-- END HEADER -->
+<!-- END HEADER -->
