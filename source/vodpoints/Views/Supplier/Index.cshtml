@@ -55,7 +55,7 @@
                                         <td class="highlight">
                                             <div class="success">
                                             </div>
-                                            <a href="supplier_edit.html">
+                                            <a href='@Url.Action("Edit", "Supplier", new { id = supplier.Id })'>
                                                 @Html.DisplayFor(a => supplier.Name)
                                             </a>
                                         </td>
@@ -72,7 +72,7 @@
                                             @Html.DisplayFor(a => supplier.Address)
                                         </td>
                                         <td>
-                                            <a href="javascript:;" class="btn default btn-xs green">
+                                            <a href='@Url.Action("Edit", "Supplier", new { id = supplier.Id })' class="btn default btn-xs green">
                                                 <i class="fa fa-pencil"></i> 編輯
                                             </a>
                                             <a href='@Url.Action("Delete", "Supplier", new { id = supplier.Id })' class="btn default btn-xs purple">

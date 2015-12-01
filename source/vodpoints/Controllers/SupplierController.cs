@@ -37,9 +37,16 @@ namespace vodpoints.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var model = this.vodpointsdb.suppliers.Find(id);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -51,7 +58,7 @@ namespace vodpoints.Controllers
                 this.vodpointsdb.SaveChanges();
             }
 
-            return View(supplier);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
