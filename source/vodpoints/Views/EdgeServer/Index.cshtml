@@ -1,0 +1,84 @@
+﻿@model List<vodpoints.edmx.edgeserver>
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light">
+                    <!--標題-->
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-delicious font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">
+                                頻道商管理
+                            </span>
+                        </div>
+
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="@Url.Action("Create", "EdgeServer")">
+                                    <i class="fa fa-plus-square"></i>&nbsp;新增頻道商
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END 標題-->
+                    <!--內容-->
+                    <div class="portlet-body">
+                        <div class="table-scrollable">
+                            <table class="table table-striped table-bordered table-advance table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <i class="fa fa-institution"></i> 有線電視
+                                        </th>
+                                        <th>
+                                            <i class="fa fa-user"></i> Edge Server
+                                        </th>
+                                        <th>
+                                            <i class="fa fa-phone"></i> 登入帳號
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var edgeserver in Model)
+                                {
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success">
+                                            </div>
+                                            <a href='@Url.Action("Edit", "EdgeServer", new { id = edgeserver.Id })'>
+                                                @Html.DisplayFor(a => edgeserver.CableTVName)
+                                            </a>
+                                        </td>
+                                        <td class="highlight">
+                                            @Html.DisplayFor(a => edgeserver.IP)
+                                        </td>
+                                        <td class="highlight">
+                                            @Html.DisplayFor(a => edgeserver.Account)
+                                        </td>
+                                        <td>
+                                            <a href='@Url.Action("Edit", "EdgeServer", new { id = edgeserver.Id })' class="btn default btn-xs green">
+                                                <i class="fa fa-pencil"></i> 編輯
+                                            </a>
+                                            <a href='@Url.Action("Delete", "EdgeServer", new { id = edgeserver.Id })' class="btn default btn-xs purple">
+                                                <i class="fa fa-trash-o"></i> 刪除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--END內容-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT -->
+<!-- BEGIN PAGE CONTENT INNER -->
+<!-- END PAGE CONTENT INNER -->

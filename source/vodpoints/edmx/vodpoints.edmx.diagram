@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ed61cfd3c949466aae275f5170950311" Name="圖表1">
         <EntityTypeShape EntityType="vodpointsdbModel.supplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vodpointsdbModel.edgeserver" Width="1.5" PointX="4.5" PointY="1.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

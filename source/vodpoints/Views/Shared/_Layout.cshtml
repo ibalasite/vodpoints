@@ -31,9 +31,9 @@
         <link href="~/assets/admin/layout3/css/custom.css" rel="stylesheet" type="text/css">
         <!-- END THEME STYLES -->
         <link rel="shortcut icon" href="~/images/point.ico" />
-@*        @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
+        @Styles.Render("~/Content/css")
+        @*@Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/modernizr")*@
     </head>
     <body>
@@ -43,8 +43,8 @@
                 @RenderBody()
                 <hr />
             </div>
-            @Html.Partial("_Footer")
         </div>
+        @Html.Partial("_Footer")
         @RenderSection("scripts", required: false)
     </body>
 </html>
