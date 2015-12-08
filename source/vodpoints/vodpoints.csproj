@@ -4624,7 +4624,11 @@
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\EdgeServerController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="edmx\edgeserver.cs">
+      <DependentUpon>vodpoints.tt</DependentUpon>
+    </Compile>
+    <Compile Include="edmx\manager.cs">
       <DependentUpon>vodpoints.tt</DependentUpon>
     </Compile>
     <Compile Include="edmx\supplier.cs">
@@ -4685,6 +4689,9 @@
     <Content Include="Views\EdgeServer\Create.cshtml" />
     <Content Include="Views\EdgeServer\Edit.cshtml" />
     <Content Include="Views\EdgeServer\Index.cshtml" />
+    <Content Include="Views\Manager\Create.cshtml" />
+    <Content Include="Views\Manager\Edit.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

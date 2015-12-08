@@ -27,5 +27,6 @@ namespace vodpoints.edmx
     
         public DbSet<supplier> suppliers { get; set; }
         public DbSet<edgeserver> edgeservers { get; set; }
+        public DbSet<manager> managers { get; set; }
     }
 }
