@@ -8,6 +8,7 @@
         <EntityContainer Name="vodpointsdbModelStoreContainer">
           <EntitySet Name="edgeserver" EntityType="vodpointsdbModel.Store.edgeserver" store:Type="Tables" Schema="vodpointsdb" />
           <EntitySet Name="manager" EntityType="vodpointsdbModel.Store.manager" store:Type="Tables" Schema="vodpointsdb" />
+          <EntitySet Name="operationlog" EntityType="vodpointsdbModel.Store.operationlog" store:Type="Tables" Schema="vodpointsdb" />
           <EntitySet Name="supplier" EntityType="vodpointsdbModel.Store.supplier" store:Type="Tables" Schema="vodpointsdb" />
         </EntityContainer>
         <EntityType Name="edgeserver">
@@ -31,6 +32,16 @@
           <Property Name="Telephone" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="operationlog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Module" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ExecutedAction" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="supplier">
           <Key>
             <PropertyRef Name="Id" />
@@ -50,6 +61,7 @@
           <EntitySet Name="suppliers" EntityType="vodpointsdbModel.supplier" />
           <EntitySet Name="edgeservers" EntityType="vodpointsdbModel.edgeserver" />
           <EntitySet Name="managers" EntityType="vodpointsdbModel.manager" />
+          <EntitySet Name="operationlogs" EntityType="vodpointsdbModel.operationlog" />
         </EntityContainer>
         <EntityType Name="supplier">
           <Key>
@@ -82,6 +94,16 @@
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Telephone" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="operationlog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Account" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Module" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ExecutedAction" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -120,6 +142,17 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="operationlogs">
+            <EntityTypeMapping TypeName="vodpointsdbModel.operationlog">
+              <MappingFragment StoreEntitySet="operationlog">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ExecutedAction" ColumnName="ExecutedAction" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

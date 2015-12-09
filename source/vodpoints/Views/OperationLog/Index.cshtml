@@ -1,5 +1,6 @@
-﻿<!-- BEGIN PAGE CONTENT -->
-
+﻿@model PagedList.IPagedList<vodpoints.edmx.operationlog>
+@using PagedList.Mvc;
+<!-- BEGIN PAGE CONTENT -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -18,13 +19,15 @@
                 <div class="portlet-body form">
                     <form role="form">
                         <div class="form-body">
+                            @using (Html.BeginForm("Index", "OperationLog", FormMethod.Get))
+                            {
                             <div class="form-group">
                                 <label class="col-md-1 control-label">操作日期</label>
                                 <div class="col-md-2">
-                                    <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="11/29/2015">
+                                    <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" name="SearchDate" placeholder="yyyy/mm/dd" data-date-format="yyyy/mm/dd">
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control input-medium" placeholder="請輸入搜尋關鍵字">
+                                    <input type="text" class="form-control input-medium" placeholder="請輸入搜尋關鍵字" name="SearchString">
                                 </div>
                                 <div class="col-md-2">
                                     <button class="btn btn-primary" type="submit">搜尋</button>
@@ -34,6 +37,7 @@
                                     <h5>&nbsp;</h5>
                                 </div>
                             </div>
+                            }
                         </div>
 
                         <div class="form-body">
@@ -55,82 +59,35 @@
                                         <th>
                                             <i class="fa  fa-clock-o"></i> 稽核時間
                                         </th>
-                                        <th>
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach (var operationLog in Model)
+                                {                                
                                     <tr>
                                         <td>
-                                            admin
+                                            @Html.DisplayFor(a=>operationLog.Account)
                                         </td>
                                         <td>
-                                            影片上傳
+                                            @Html.DisplayFor(a=>operationLog.Module)
                                         </td>
                                         <td>
-                                            2015-11-12 18:07:30 新增 大爾查布_G_U_S1_18_國語.ts
+                                            @Html.DisplayFor(a=>operationLog.ExecutedAction)
                                         </td>
                                         <td>
-                                            2015-11-12
+                                            @String.Format("{0}", operationLog.CreateDate.ToString("yyyy-MM-dd"))
                                         </td>
                                         <td>
-                                            13:45:56
+                                            @String.Format("{0}", operationLog.CreateDate.ToString("HH:mm:ss"))
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            admin
-                                        </td>
-                                        <td>
-                                            影片上傳
-                                        </td>
-                                        <td>
-                                            2015-11-12 18:07:30 新增 大爾查布_G_U_S1_18_國語.ts
-                                        </td>
-                                        <td>
-                                            2015-11-12
-                                        </td>
-                                        <td>
-                                            13:45:56
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            admin
-                                        </td>
-                                        <td>
-                                            影片上傳
-                                        </td>
-                                        <td>
-                                            2015-11-12 18:07:30 新增 大爾查布_G_U_S1_18_國語.ts
-                                        </td>
-                                        <td>
-                                            2015-11-12
-                                        </td>
-                                        <td>
-                                            13:45:56
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            admin
-                                        </td>
-                                        <td>
-                                            影片上傳
-                                        </td>
-                                        <td>
-                                            2015-11-12 18:07:30 新增 大爾查布_G_U_S1_18_國語.ts
-                                        </td>
-                                        <td>
-                                            2015-11-12
-                                        </td>
-                                        <td>
-                                            13:45:56
-                                        </td>
-                                    </tr>
+                                }
                                 </tbody>
                             </table>
+                            <br />
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                         </div>
                     </form>
 

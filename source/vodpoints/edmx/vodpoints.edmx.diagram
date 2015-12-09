@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="vodpointsdbModel.supplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vodpointsdbModel.edgeserver" Width="1.5" PointX="4.5" PointY="1.25" />
         <EntityTypeShape EntityType="vodpointsdbModel.manager" Width="1.5" PointX="2.625" PointY="3.375" />
+        <EntityTypeShape EntityType="vodpointsdbModel.operationlog" Width="1.5" PointX="5.5" PointY="4.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
