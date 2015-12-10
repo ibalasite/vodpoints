@@ -15,6 +15,7 @@
         <!--END 標題-->
         @using (Html.BeginForm("Edit", "EdgeServer", FormMethod.Post))
         {
+            @Html.ValidationSummary()
             <div class="portlet-body form">
             <form role="form">
                 <div class="form-body">
@@ -23,6 +24,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">有線電視</label>
                             <div class="col-lg-2">
                                 @Html.TextBoxFor(a=>a.CableTVName, new { @class="form-contrl"})
+                                @Html.ValidationMessageFor(a=>a.CableTVName)
                             </div>
                         </div>
                     </div>
@@ -32,6 +34,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">Edge Server IP</label>
                             <div class="col-lg-2">
                                 @Html.TextBoxFor(a=>a.IP, new { @class="form-contrl IP"})
+                                @Html.ValidationMessageFor(a=>a.IP)
                             </div>
                         </div>
                     </div>
@@ -41,6 +44,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">登入帳號</label>
                             <div class="col-lg-2">
                                 @Html.TextBoxFor(a=>a.Account, new { @class="form-contrl"})
+                                @Html.ValidationMessageFor(a=>a.Account)
                             </div>
                         </div>
                     </div>
@@ -60,7 +64,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">密碼確認</label>
                             <div class="col-lg-2">
                                 @Html.PasswordFor(a=>a.ConfirmPassword, new { @class="form-contrl", autocomplete = "off", placeholder="Password", value = Model.Password})
-                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "新舊密碼不符", new { @class = "small text-danger" })
+                                @Html.ValidationMessageFor(a => a.ConfirmPassword, "新舊密碼不符", new { @class = "small text-danger" })
                             </div>
                         </div>
                     </div>
@@ -69,6 +73,7 @@
                         <div class="row">
                             <div class="col-lg-offset-3 col-lg-9">
                                 <button type="submit" class="btn btn-danger">儲存變更</button>
+                                @Html.ActionLink("取消","Index","EdgeServer",null, new { @class="btn btn-primary"})
                             </div>
                         </div>
                     </div>

@@ -14,6 +14,7 @@
         <!--END 標題-->
         @using (Html.BeginForm("Create", "EdgeServer", FormMethod.Post))
         {
+        @Html.ValidationSummary()
         <div class="portlet-body form">
             <form role="form">
                 <div class="form-body">
@@ -22,6 +23,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">有線電視</label>
                             <div class="col-lg-2">
                                 <input type="text" class="form-control" name="CableTVName">
+                                @Html.ValidationMessageFor(a=> Model.CableTVName)
                             </div>
                         </div>
                     </div>
@@ -31,6 +33,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">Edge Server IP</label>
                             <div class="col-lg-2">
                                 <input type="text" class="form-control IP" name="IP">
+                                @Html.ValidationMessageFor(a=> Model.IP)
                             </div>
                         </div>
                     </div>
@@ -40,6 +43,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">登入帳號</label>
                             <div class="col-lg-3">
                                 <input type="text" class="form-control" name="Account">
+                                @Html.ValidationMessageFor(a=> Model.Account)
                             </div>
                         </div>
                     </div>
@@ -68,6 +72,7 @@
                         <div class="row">
                             <div class="col-lg-offset-3 col-lg-9">
                                 <button type="submit" class="btn btn-danger" id="EdgeServerCreate">儲存變更</button>
+                                @Html.ActionLink("取消","Index","EdgeServer",null, new { @class="btn btn-primary"})
                             </div>
                         </div>
                     </div>

@@ -18,11 +18,15 @@ namespace vodpoints.edmx
     {
         public long Id { get; set; }
         [Required]
+        [StringLength(50, ErrorMessage = "超過欄位長度")]
         public string CableTVName { get; set; }
+        [StringLength(50, ErrorMessage = "超過欄位長度")]
         public string IP { get; set; }
+        [StringLength(50, ErrorMessage = "超過欄位長度")]
         public string Account { get; set; }
         [Required(ErrorMessage="*")]
         [DataType(DataType.Password)]
+        [StringLength(50, ErrorMessage = "超過欄位長度")]
         public string Password { get; set; }
         [NotMapped]
         [Compare("Password")]

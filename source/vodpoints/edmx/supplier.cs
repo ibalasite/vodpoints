@@ -11,14 +11,20 @@ namespace vodpoints.edmx
 {
     using System;
     using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
     
     public partial class supplier
     {
         public long Id { get; set; }
+        [Required]
+        [StringLength(50, ErrorMessage = "超過欄位長度")]
         public string Name { get; set; }
+        [StringLength(50,ErrorMessage="超過欄位長度")]
         public string ContactPerson { get; set; }
         public string Telephone { get; set; }
+        [StringLength(50, ErrorMessage = "超過欄位長度")]
         public string Email { get; set; }
+        [StringLength(50, ErrorMessage = "超過欄位長度")]
         public string Address { get; set; }
     }
 }

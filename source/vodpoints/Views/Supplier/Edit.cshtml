@@ -15,6 +15,7 @@
         <!--END 標題-->
         @using (Html.BeginForm("Edit", "Supplier", FormMethod.Post))
         {
+            @Html.ValidationSummary()
             <div class="portlet-body form">
             <form role="form">
                 <div class="form-body">
@@ -23,6 +24,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">頻道商名稱</label>
                             <div class="col-lg-2">
                                 @Html.TextBoxFor(a=>a.Name, new { @class="form-contrl"})
+                                @Html.ValidationMessageFor(a=>a.Name)
                             </div>
                         </div>
                     </div>
@@ -32,6 +34,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">聯絡人</label>
                             <div class="col-lg-2">
                                 @Html.TextBoxFor(a=>a.ContactPerson, new { @class="form-contrl"})
+                                @Html.ValidationMessageFor(a=>a.ContactPerson)
                             </div>
                         </div>
                     </div>
@@ -50,6 +53,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">Email</label>
                             <div class="col-lg-2">
                                 @Html.TextBoxFor(a=>a.Email, new { @class="form-contrl"})
+                                @Html.ValidationMessageFor(a=>a.Email)
                             </div>
                         </div>
                     </div>
@@ -60,6 +64,7 @@
                             <label class="col-lg-offset-1 col-lg-2 control-label">公司地址</label>
                             <div class="col-lg-4">
                                 @Html.TextBoxFor(a=>a.Address, new { @class="form-contrl"})
+                                @Html.ValidationMessageFor(a=>a.Address)
                             </div>
                         </div>
                     </div>
@@ -68,6 +73,7 @@
                         <div class="row">
                             <div class="col-lg-offset-3 col-lg-9">
                                 <button type="submit" class="btn btn-danger">儲存變更</button>
+                                @Html.ActionLink("取消","Index","Supplier",null, new { @class="btn btn-primary"})
                             </div>
                         </div>
                     </div>
