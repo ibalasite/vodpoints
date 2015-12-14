@@ -22,7 +22,7 @@ namespace vodpoints.Controllers
 			}
 
 			ViewBag.DicAuthorityGroupUsers = dicAuthorityGroupUsers;
-            return View(models);
+			return View(models);
 		}
 
 		[HttpGet]
@@ -30,6 +30,8 @@ namespace vodpoints.Controllers
 		{
 			var authoritygroup = this.vodpointsdb.authoritygroups.Find(id);
 			this.vodpointsdb.authoritygroups.Remove(authoritygroup);
+			var managerAuthorityGroups = this.vodpointsdb.managerauthoritygroups.Where(a => a.AuthorityGroupId == id);
+			this.vodpointsdb.managerauthoritygroups.RemoveRange(managerAuthorityGroups);
 			this.vodpointsdb.SaveChanges();
 
 			return RedirectToAction("Index");
@@ -65,7 +67,12 @@ namespace vodpoints.Controllers
 					var model = new managerauthoritygroup();
 					model.AuthorityGroupId = authorityGroupId;
 					model.ManagerId = this.vodpointsdb.managers.Where(a => a.Name == manager).First().Id;
-					this.vodpointsdb.managerauthoritygroups.Add(model);
+					bool isExisted = this.vodpointsdb.managerauthoritygroups.Where(a => a.AuthorityGroupId == model.AuthorityGroupId && a.ManagerId == model.ManagerId).Any();
+
+					if (!isExisted)
+					{
+						this.vodpointsdb.managerauthoritygroups.Add(model);
+					}
 				}
 
 				//// create data in manageraccesscontrolchildren table
@@ -76,12 +83,18 @@ namespace vodpoints.Controllers
 					{
 						foreach (var manager in managers)
 						{
-							this.vodpointsdb.manageraccesscontrolchildrens.Add(new manageraccesscontrolchildren
+							var managerId = this.vodpointsdb.managers.Where(a => a.Name == manager).First().Id;
+							bool isExisted = this.vodpointsdb.manageraccesscontrolchildrens.Where(a => a.AccessControlChildrenId == accesscontrolchildrenId && a.ManagerId == managerId).Any();
+
+							if (!isExisted)
 							{
-								AccessControlChildrenId = accesscontrolchildrenId,
-								Function = 1,
-								ManagerId = this.vodpointsdb.managers.Where(a => a.Name == manager).First().Id
-							});
+								this.vodpointsdb.manageraccesscontrolchildrens.Add(new manageraccesscontrolchildren
+								{
+									AccessControlChildrenId = accesscontrolchildrenId,
+									Function = 1,
+									ManagerId = managerId
+								});
+							}
 						}
 					}
 				}
