@@ -7,8 +7,15 @@
       <Diagram DiagramId="ed61cfd3c949466aae275f5170950311" Name="圖表1">
         <EntityTypeShape EntityType="vodpointsdbModel.supplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vodpointsdbModel.edgeserver" Width="1.5" PointX="4.5" PointY="1.25" />
-        <EntityTypeShape EntityType="vodpointsdbModel.manager" Width="1.5" PointX="2.625" PointY="3.375" />
-        <EntityTypeShape EntityType="vodpointsdbModel.operationlog" Width="1.5" PointX="5.5" PointY="4.125" />
+        <EntityTypeShape EntityType="vodpointsdbModel.manager" Width="1.5" PointX="5" PointY="3.875" />
+        <EntityTypeShape EntityType="vodpointsdbModel.operationlog" Width="1.5" PointX="0.875" PointY="3.875" />
+        <EntityTypeShape EntityType="vodpointsdbModel.accesscontrolchildren" Width="1.5" PointX="10" PointY="0.875" />
+        <EntityTypeShape EntityType="vodpointsdbModel.accesscontrolparent" Width="1.5" PointX="7.75" PointY="1" />
+        <EntityTypeShape EntityType="vodpointsdbModel.authoritygroup" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="vodpointsdbModel.managerauthoritygroup" Width="1.5" PointX="2.75" PointY="6.75" />
+        <AssociationConnector Association="vodpointsdbModel.FK_accesscontrolchildren_accesscontrolparent" />
+        <EntityTypeShape EntityType="vodpointsdbModel.manageraccesscontrolchildren" Width="1.5" PointX="7.375" PointY="4.125" />
+        <AssociationConnector Association="vodpointsdbModel.FK_manageraccesscontrolchildren_manager" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

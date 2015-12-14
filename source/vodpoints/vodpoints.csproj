@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -4624,7 +4625,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\AuthorityController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OperationLogController.cs" />
@@ -4632,10 +4633,25 @@
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\EdgeServerController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="edmx\accesscontrolchildren.cs">
+      <DependentUpon>vodpoints.tt</DependentUpon>
+    </Compile>
+    <Compile Include="edmx\accesscontrolparent.cs">
+      <DependentUpon>vodpoints.tt</DependentUpon>
+    </Compile>
+    <Compile Include="edmx\authoritygroup.cs">
+      <DependentUpon>vodpoints.tt</DependentUpon>
+    </Compile>
     <Compile Include="edmx\edgeserver.cs">
       <DependentUpon>vodpoints.tt</DependentUpon>
     </Compile>
     <Compile Include="edmx\manager.cs">
+      <DependentUpon>vodpoints.tt</DependentUpon>
+    </Compile>
+    <Compile Include="edmx\manageraccesscontrolchildren.cs">
+      <DependentUpon>vodpoints.tt</DependentUpon>
+    </Compile>
+    <Compile Include="edmx\managerauthoritygroup.cs">
       <DependentUpon>vodpoints.tt</DependentUpon>
     </Compile>
     <Compile Include="edmx\operationlog.cs">
@@ -4662,6 +4678,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompositeAuthorityViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4691,8 +4708,7 @@
     <Content Include="Views\Package\Index.cshtml" />
     <Content Include="Views\Package\Management.cshtml" />
     <Content Include="Views\OperationLog\Index.cshtml" />
-    <Content Include="Views\Authorization\Authority.cshtml" />
-    <Content Include="Views\Authorization\Manager.cshtml" />
+    <Content Include="Views\Authority\Index.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Supplier\Create.cshtml" />
     <Content Include="Views\Supplier\Edit.cshtml" />
@@ -4702,6 +4718,7 @@
     <Content Include="Views\Manager\Create.cshtml" />
     <Content Include="Views\Manager\Edit.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Authority\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

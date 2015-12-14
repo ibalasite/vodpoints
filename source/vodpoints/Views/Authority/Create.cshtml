@@ -1,0 +1,113 @@
+﻿@model vodpoints.Models.CompositeAuthorityViewModel
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="portlet light">
+            <!--標題-->
+            <div class="portlet-title">
+                <h3 class="form-section"><i class="icon-user"></i>權限控管</h3>
+            </div>
+            <!--END 標題-->
+@using (Html.BeginForm("Create", "Authority", FormMethod.Post))
+{
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-lg-offset-1 col-lg-2 control-label">群組名稱</label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="authoritygroup.Name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-lg-offset-1 col-lg-2 control-label">群組描述</label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="authoritygroup.Description" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="form-section">管理員選擇</h3>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-lg-offset-1 col-lg-2 control-label">管理員</label>
+                            <div class="col-lg-2">
+                                @foreach (var item in Model.Managers)
+                                {
+                                    <input type="checkbox" name="Managers" value="@item.Name">@item.Name
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="form-section">權限</h3>
+
+                    <div class="row">
+                        <div class="col-md-1">&nbsp;</div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <table class="table table-condensed" style="border-bottom-width: 2px; border-bottom: 1px inset #dddddd;">
+                                    <thead>
+                                        <tr>
+                                            <th>群組</th>
+                                            <th>項目</th>
+                                            <th>完全控制</th>
+                                            <th>禁止使用</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var parent in Model.AccessControlParent)
+                                    {                                       
+                                        <tr>
+                                            <td rowspan="@Model.AccessControlChildren.Where(a=>a.ParentId == parent.Id).Count()" class="text-primary text-center">
+                                                <i class="fa fa-film fa-3x"></i>
+                                                <br />
+                                                @parent.Name
+                                            </td>
+                                            <td>@Model.AccessControlChildren.Where(a=>a.ParentId == parent.Id).First().Name</td>
+                                            <td>
+                                                <input data-val="true" data-val-required="mam_upload 欄位是必要項。" id="mam_upload" name="@Model.AccessControlChildren.Where(a=>a.ParentId == parent.Id).First().Id" type="radio" value="True" />
+                                            </td>
+                                            <td>
+                                                <input checked="checked" id="mam_upload" name="@Model.AccessControlChildren.Where(a=>a.ParentId == parent.Id).First().Id" type="radio" value="False" />
+                                            </td>
+                                        </tr>
+                                        foreach(var children in Model.AccessControlChildren.Where(a=>a.ParentId == parent.Id).Skip(1))
+                                        {
+                                            <tr>
+                                                <td>@children.Name</td>
+                                                <td>
+                                                    <input data-val="true" data-val-required="mam_download 欄位是必要項。" id="mam_download" name="@children.Id" type="radio" value="True" />
+                                                </td>
+                                                <td>
+                                                    <input checked="checked" id="mam_download" name="@children.Id" type="radio" value="False" />
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-offset-3 col-lg-9">
+                                <button type="submit" class="btn btn-danger" id="AuthorityCreate">儲存變更</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+}
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT -->

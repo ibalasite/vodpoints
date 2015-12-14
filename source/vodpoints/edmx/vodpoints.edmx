@@ -4,55 +4,140 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="vodpointsdbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="vodpointsdbModelStoreContainer">
-          <EntitySet Name="edgeserver" EntityType="vodpointsdbModel.Store.edgeserver" store:Type="Tables" Schema="vodpointsdb" />
-          <EntitySet Name="manager" EntityType="vodpointsdbModel.Store.manager" store:Type="Tables" Schema="vodpointsdb" />
-          <EntitySet Name="operationlog" EntityType="vodpointsdbModel.Store.operationlog" store:Type="Tables" Schema="vodpointsdb" />
-          <EntitySet Name="supplier" EntityType="vodpointsdbModel.Store.supplier" store:Type="Tables" Schema="vodpointsdb" />
-        </EntityContainer>
+    <Schema Namespace="vodpointsdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accesscontrolchildren">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ParentId" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accesscontrolparent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="authoritygroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="edgeserver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CableTVName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="IP" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Account" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CableTVName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="manager">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Account" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Telephone" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="manageraccesscontrolchildren">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+            <PropertyRef Name="AccessControlChildrenId" />
+          </Key>
+          <Property Name="ManagerId" Type="uint" Nullable="false" />
+          <Property Name="AccessControlChildrenId" Type="uint" Nullable="false" />
+          <Property Name="Function" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="managerauthoritygroup">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+            <PropertyRef Name="AuthorityGroupId" />
+          </Key>
+          <Property Name="ManagerId" Type="uint" Nullable="false" />
+          <Property Name="AuthorityGroupId" Type="uint" Nullable="false" />
         </EntityType>
         <EntityType Name="operationlog">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Account" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Module" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="ExecutedAction" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Module" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExecutedAction" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="supplier">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="ContactPerson" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Telephone" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <Association Name="FK_accesscontrolchildren_accesscontrolparent">
+          <End Role="accesscontrolparent" Type="Self.accesscontrolparent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="accesscontrolchildren" Type="Self.accesscontrolchildren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accesscontrolparent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="accesscontrolchildren">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_manageraccesscontrolchildren_accesscontrolchildren' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_manageraccesscontrolchildren_accesscontrolchildren" />-->
+        <Association Name="FK_manageraccesscontrolchildren_manager">
+          <End Role="manager" Type="Self.manager" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="manageraccesscontrolchildren" Type="Self.manageraccesscontrolchildren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="manageraccesscontrolchildren">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vodpointsdbModelStoreContainer">
+          <EntitySet Name="accesscontrolchildren" EntityType="Self.accesscontrolchildren" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="accesscontrolparent" EntityType="Self.accesscontrolparent" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="authoritygroup" EntityType="Self.authoritygroup" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="edgeserver" EntityType="Self.edgeserver" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="manager" EntityType="Self.manager" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="manageraccesscontrolchildren" EntityType="Self.manageraccesscontrolchildren" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="managerauthoritygroup" EntityType="Self.managerauthoritygroup" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="operationlog" EntityType="Self.operationlog" Schema="vodpointsdb" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="vodpointsdb" store:Type="Tables" />
+          <AssociationSet Name="FK_accesscontrolchildren_accesscontrolparent" Association="Self.FK_accesscontrolchildren_accesscontrolparent">
+            <End Role="accesscontrolparent" EntitySet="accesscontrolparent" />
+            <End Role="accesscontrolchildren" EntitySet="accesscontrolchildren" />
+          </AssociationSet>
+          <AssociationSet Name="FK_manageraccesscontrolchildren_manager" Association="Self.FK_manageraccesscontrolchildren_manager">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="manageraccesscontrolchildren" EntitySet="manageraccesscontrolchildren" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -62,6 +147,19 @@
           <EntitySet Name="edgeservers" EntityType="vodpointsdbModel.edgeserver" />
           <EntitySet Name="managers" EntityType="vodpointsdbModel.manager" />
           <EntitySet Name="operationlogs" EntityType="vodpointsdbModel.operationlog" />
+          <EntitySet Name="accesscontrolchildrens" EntityType="vodpointsdbModel.accesscontrolchildren" />
+          <EntitySet Name="accesscontrolparents" EntityType="vodpointsdbModel.accesscontrolparent" />
+          <EntitySet Name="authoritygroups" EntityType="vodpointsdbModel.authoritygroup" />
+          <EntitySet Name="managerauthoritygroups" EntityType="vodpointsdbModel.managerauthoritygroup" />
+          <AssociationSet Name="FK_accesscontrolchildren_accesscontrolparent" Association="vodpointsdbModel.FK_accesscontrolchildren_accesscontrolparent">
+            <End Role="accesscontrolparent" EntitySet="accesscontrolparents" />
+            <End Role="accesscontrolchildren" EntitySet="accesscontrolchildrens" />
+          </AssociationSet>
+          <EntitySet Name="manageraccesscontrolchildrens" EntityType="vodpointsdbModel.manageraccesscontrolchildren" />
+          <AssociationSet Name="FK_manageraccesscontrolchildren_manager" Association="vodpointsdbModel.FK_manageraccesscontrolchildren_manager">
+            <End Role="manager" EntitySet="managers" />
+            <End Role="manageraccesscontrolchildren" EntitySet="manageraccesscontrolchildrens" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="supplier">
           <Key>
@@ -94,6 +192,7 @@
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Telephone" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="manageraccesscontrolchildrens" Relationship="vodpointsdbModel.FK_manageraccesscontrolchildren_manager" FromRole="manager" ToRole="manageraccesscontrolchildren" />
         </EntityType>
         <EntityType Name="operationlog">
           <Key>
@@ -105,6 +204,78 @@
           <Property Type="String" Name="ExecutedAction" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="CreateDate" Nullable="false" />
         </EntityType>
+        <EntityType Name="accesscontrolchildren">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ParentId" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ParentId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="accesscontrolparent" Relationship="vodpointsdbModel.FK_accesscontrolchildren_accesscontrolparent" FromRole="accesscontrolchildren" ToRole="accesscontrolparent" />
+        </EntityType>
+        <EntityType Name="accesscontrolparent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="accesscontrolchildrens" Relationship="vodpointsdbModel.FK_accesscontrolchildren_accesscontrolparent" FromRole="accesscontrolparent" ToRole="accesscontrolchildren" />
+        </EntityType>
+        <EntityType Name="authoritygroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="managerauthoritygroup">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+            <PropertyRef Name="AuthorityGroupId" />
+          </Key>
+          <Property Name="ManagerId" Type="Int64" Nullable="false" />
+          <Property Name="AuthorityGroupId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_accesscontrolchildren_accesscontrolparent">
+          <End Type="vodpointsdbModel.accesscontrolparent" Role="accesscontrolparent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="vodpointsdbModel.accesscontrolchildren" Role="accesscontrolchildren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accesscontrolparent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="accesscontrolchildren">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="manageraccesscontrolchildren">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+            <PropertyRef Name="AccessControlChildrenId" />
+          </Key>
+          <Property Name="ManagerId" Type="Int64" Nullable="false" />
+          <Property Name="AccessControlChildrenId" Type="Int64" Nullable="false" />
+          <Property Name="Function" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="manager" Relationship="vodpointsdbModel.FK_manageraccesscontrolchildren_manager" FromRole="manageraccesscontrolchildren" ToRole="manager" />
+        </EntityType>
+        <Association Name="FK_manageraccesscontrolchildren_manager">
+          <End Type="vodpointsdbModel.manager" Role="manager" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="vodpointsdbModel.manageraccesscontrolchildren" Role="manageraccesscontrolchildren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="manageraccesscontrolchildren">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -157,6 +328,49 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="accesscontrolchildrens">
+            <EntityTypeMapping TypeName="vodpointsdbModel.accesscontrolchildren">
+              <MappingFragment StoreEntitySet="accesscontrolchildren">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accesscontrolparents">
+            <EntityTypeMapping TypeName="vodpointsdbModel.accesscontrolparent">
+              <MappingFragment StoreEntitySet="accesscontrolparent">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="authoritygroups">
+            <EntityTypeMapping TypeName="vodpointsdbModel.authoritygroup">
+              <MappingFragment StoreEntitySet="authoritygroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managerauthoritygroups">
+            <EntityTypeMapping TypeName="vodpointsdbModel.managerauthoritygroup">
+              <MappingFragment StoreEntitySet="managerauthoritygroup">
+                <ScalarProperty Name="AuthorityGroupId" ColumnName="AuthorityGroupId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manageraccesscontrolchildrens">
+            <EntityTypeMapping TypeName="vodpointsdbModel.manageraccesscontrolchildren">
+              <MappingFragment StoreEntitySet="manageraccesscontrolchildren">
+                <ScalarProperty Name="Function" ColumnName="Function" />
+                <ScalarProperty Name="AccessControlChildrenId" ColumnName="AccessControlChildrenId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -174,6 +388,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

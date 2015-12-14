@@ -32,5 +32,6 @@ namespace vodpoints.edmx
         [NotMapped]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-    }
+		public virtual ICollection<manageraccesscontrolchildren> manageraccesscontrolchildrens { get; set; }
+	}
 }

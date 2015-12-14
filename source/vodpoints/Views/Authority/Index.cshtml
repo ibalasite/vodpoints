@@ -1,0 +1,79 @@
+﻿@model List<vodpoints.edmx.authoritygroup>
+@{
+    var dicAuthorityGroupUsers = ViewBag.DicAuthorityGroupUsers as Dictionary<int, int>;
+}
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light">
+                    <!--標題-->
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-user font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">
+                                權限控管
+                            </span>
+                        </div>
+
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href='@Url.Action("Create", "Authority")'>
+                                    <i class="fa fa-plus-square"></i>&nbsp;新增控管群組
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END 標題-->
+                    <!--內容-->
+                    <div class="portlet-body">
+                        <div class="table-scrollable">
+                            <table class="table table-striped table-bordered table-advance table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <i class="fa fa-users"></i> 權限群組
+                                        </th>
+                                        <th class="hidden-xs">
+                                            <i class="fa fa-user"></i> 套用此權限管理者
+                                        </th>
+                                        <th>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var authorityGroup in Model)
+                                    {
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success">
+                                            </div>
+                                            <a href="javascript:;">
+                                                @authorityGroup.Name
+                                            </a>
+                                        </td>
+                                        <td class="hidden-xs">
+                                            @dicAuthorityGroupUsers[(int)@authorityGroup.Id]
+                                        </td>
+                                        <td>
+                                            <a href='@Url.Action("Delete", "Authority", new { id = @authorityGroup.Id })' class="btn default btn-xs purple">
+                                                <i class="fa fa-trash-o"></i> 刪除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--END內容-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT -->
+<!-- BEGIN PAGE CONTENT INNER -->
+<!-- END PAGE CONTENT INNER -->
